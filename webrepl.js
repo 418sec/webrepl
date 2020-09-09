@@ -83,6 +83,8 @@ ReplHttpServer.prototype.route = function(req, res) {
     req.on('error', function() { /* Ignore Errors */ });
     res.on('error', function() { /* Ignore Errors */ });
 
+    req.url = req.url.replace(/(\.\.)/g, '');
+    
     var match = null;
     if (req.url.match(/^\/repl/)) {
         if (req.method === 'GET') {
